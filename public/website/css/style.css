@@ -1,0 +1,69 @@
+.h-600{
+    height: 550px;
+}
+.h-250{
+    height: 250px;
+}
+
+.my-carousel
+{
+    background: rgba(0,0,0, 0.65);
+    width: 100%;
+    height: 550px;
+    position: absolute;
+    bottom: 0;
+}
+
+.my-caption
+{
+   bottom: 200px;
+}
+
+.member-image{
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+    margin-left: 40%;
+}
+
+.customer-caption{
+    position: relative;
+    height: 320px;
+    width: 70%;
+    top: 30px;
+    padding: 20px;
+    color: black;
+}
+
+.img-one{
+    background-image: url("../img/member1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    border: 2px solid black !important;
+}
+
+.img-two{
+    background-image: url("../img/member2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    border: 2px solid black !important;
+}
+
+.img-three{
+    background-image: url("../img/member3.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    border: 2px solid black !important;
+}

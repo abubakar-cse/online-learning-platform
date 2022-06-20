@@ -1,0 +1,54 @@
+Day-43
+Project Name:	Small Student Management System (SSMS)
+
+Requirements: (Feature List of the Project)
+
+Total Panel:
+	01. Website
+	02. Admin Panel
+	03. Teacher Panel
+	04. Sudent Panel
+
+Feature List Of Website:
+	a. Simple Website with
+		- Home, 
+		- Course Page, 
+		- Course Detail, 
+		- About Page, 
+		- Contact Page, 
+		- Login/Registration Page
+	b. Home Page Contains: 
+		- Hero Section
+		- Latest Course Section
+		- Section for Teacher
+		- review
+	c. Course Page Contains all pages information.
+	d. Course Details page contains specific course detail information
+	e. About Page Contain Information about Institution
+	f. Contact Page Contains contact information of the institute
+	g. Login/Reg contains login/reg form
+
+Feature List Of Admin Panel:
+	a. Secure login reg system
+	b. Admin can create and manage teacher users.
+	c. admin can create another admin user
+	d. Admin can manage student
+	e. admin can manage own profile
+	f. admin can manage course
+	g. Admin can manage student enroll
+
+Feature List Of Teacher Panel:
+	a. Secure login system
+ 	b. manage own profile
+	c. create and manage course
+	d. see all enrolled students and their status (payment, attendance)
+	e. manage the result
+	f. note share
+
+Feature List Of Student Panel:
+	a. secure login system
+	b. manage own profile
+	c. see enrolled course status
+	d. see result
+	e. see notice
+	d. 

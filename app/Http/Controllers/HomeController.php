@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    private $courses;
+    private $course;
+    private $teachers;
+
+
     public function index()
     {
-        return view("website.home.home");
+//        $this->courses = Course::where("status", 1)->orderBy("id","desc")->skip(1)->take(4)->get();
+
+        $this->courses = Course::where("status", 1)->orderBy("id","desc")->get(['id','image','title','fee']);
+        $this->teachers = Teacher::all();
+
+        return view("website.home.home", ["courses" => $this->courses, "teachers" => $this->teachers]);
     }
 
     public function about()
@@ -21,6 +33,12 @@ class HomeController extends Controller
         return view("website.course.course");
     }
 
+    public function detail($id)
+    {
+        $this->course = Course::find($id);
+        return view("website.course.detail", ["course" => $this->course]);
+    }
+
     public function contact()
     {
         return view("website.contact.contact");
@@ -30,4 +48,5 @@ class HomeController extends Controller
     {
         return view("website.login.login");
     }
+
 }

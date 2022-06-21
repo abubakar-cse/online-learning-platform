@@ -18,12 +18,13 @@ class TeacherController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            "name"      => "required",
-            "email"     => "email:rfc,dns|unique:teachers,email",
-            "image"     => "required|image",
+            "name"              => "required",
+            "designation"       => "required",
+            "email"             => "email:rfc,dns|unique:teachers,email",
+            "image"             => "required|image",
             ], [
                 "name.required" => "Please, input the name of the Teacher",
-                "image.image" => "File type should be an image",
+                "image.image"   => "File type should be an image",
         ]);
 
         Teacher::newTeacher($request);

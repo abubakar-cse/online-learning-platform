@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeacherAuthController;
 use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\AdminCourseController;
+use App\Http\Controllers\EnrollController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +26,11 @@ use App\Http\Controllers\CourseController;
 Route::get('/', [HomeController::class, "index"])->name("home");
 Route::get('/about-us', [HomeController::class, "about"])->name("about");
 Route::get('/all-courses', [HomeController::class, "course"])->name("course");
+Route::get('/courses-detail/{id}', [HomeController::class, "detail"])->name("website.course-detail");
 Route::get('/contact-us', [HomeController::class, "contact"])->name("contact");
 Route::get('/login-registration', [HomeController::class, "login"])->name("login-registration");
+Route::get('/enroll/{id}', [EnrollController::class, "index"])->name("enroll");
+Route::post('/confirm-enroll/{id}', [EnrollController::class, "createEnroll"])->name("enroll.confirm");
 
 //Teacher Dashboard Section
 Route::get("/teacher-login", [TeacherAuthController::class, "login"])->name("teacher.login");
@@ -46,6 +51,7 @@ Route::get("/detail-course/{id}", [CourseController::class, "detail"])->name("co
 //Admin Routes Section
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard');
+
     Route::get('/add-teacher', [TeacherController::class, "add"])->name('teacher.add');
     Route::post('/new-teacher', [TeacherController::class, "create"])->name('teacher.new');
     Route::get('/manage-teacher', [TeacherController::class, "manage"])->name('teacher.manage');
@@ -59,4 +65,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/edit-user/{id}', [UserController::class, "edit"])->name('user.edit');
     Route::post('/update-user/{id}', [UserController::class, "update"])->name('user.update');
     Route::get('/delete-user/{id}', [UserController::class, "delete"])->name('user.delete');
+
+    Route::get('/admin-manage-course', [AdminCourseController::class, "manage"])->name('admin.manage-course');
+    Route::get('/admin-course-detail/{id}', [AdminCourseController::class, "detail"])->name('admin.course-detail');
+    Route::get('/admin-course-status/{id}', [AdminCourseController::class, "status"])->name('admin.course-status');
 });

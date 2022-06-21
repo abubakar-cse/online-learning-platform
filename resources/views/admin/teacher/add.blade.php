@@ -29,6 +29,13 @@
                             </div>
                         </div>
                         <div class="form-group row mb-4">
+                            <label for="horizontal-firstname-input" class="col-sm-3 col-form-label">Designation</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="designation" id="horizontal-firstname-input1">
+                                <span class="text-danger">{{$errors->has("designation") ? $errors->first("designation") : ""}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-4">
                             <label for="horizontal-email-input" class="col-sm-3 col-form-label">Email</label>
                             <div class="col-sm-9">
                                 <input type="email" class="form-control" name="email" id="horizontal-email-input">

@@ -17,6 +17,7 @@ class Course extends Model
     private static $imageName;
     private static $imgUrl;
     private static $directory;
+    private static $message;
 
     public static function getImageUrl($image)
     {
@@ -88,5 +89,29 @@ class Course extends Model
         }
 
         self::$course->delete();
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo("App\Models\Teacher");
+    }
+
+    public static function updateStatus($id)
+    {
+        self::$course = Course::find($id);
+
+        if (self::$course->status == 0)
+        {
+            self::$course->status = 1;
+            self::$message = "Course status info published Successfully";
+        }
+        else
+        {
+            self::$course->status = 0;
+            self::$message = "Course status info unpublished Successfully";
+        }
+
+        self::$course->save();
+        return self::$message;
     }
 }

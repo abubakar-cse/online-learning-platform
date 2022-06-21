@@ -36,6 +36,7 @@ class Teacher extends Model
     {
         self::$teacher              = new Teacher();
         self::$teacher->name        = $request->name;
+        self::$teacher->designation = $request->designation;
         self::$teacher->email       = $request->email;
         self::$teacher->password    = bcrypt($request->password);
         self::$teacher->phone_no    = $request->phone_no;
@@ -62,6 +63,7 @@ class Teacher extends Model
         }
 
         self::$teacher->name        = $request->name;
+        self::$teacher->designation = $request->designation;
         self::$teacher->email       = $request->email;
         self::$teacher->password    = bcrypt($request->password);
         self::$teacher->phone_no    = $request->phone_no;

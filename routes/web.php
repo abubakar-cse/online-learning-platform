@@ -10,6 +10,8 @@ use App\Http\Controllers\TeacherDashboardController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\EnrollController;
+use App\Http\Controllers\StudentCourseController;
+use App\Http\Controllers\StudentAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,9 @@ Route::get('/contact-us', [HomeController::class, "contact"])->name("contact");
 Route::get('/login-registration', [HomeController::class, "login"])->name("login-registration");
 Route::get('/enroll/{id}', [EnrollController::class, "index"])->name("enroll");
 Route::post('/confirm-enroll/{id}', [EnrollController::class, "createEnroll"])->name("enroll.confirm");
+
+Route::get('/course-registration-detail/{id}', [StudentCourseController::class, "detail"])->name("registration.detail");
+Route::get('/student-logout', [StudentAuthController::class, "logout"])->name("student.logout");
 
 //Teacher Dashboard Section
 Route::get("/teacher-login", [TeacherAuthController::class, "login"])->name("teacher.login");

@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+
+    private static $student;
+
+    public static function newStudent($request)
+    {
+        self::$student = new Student();
+        self::$student->name        = $request->name;
+        self::$student->email       = $request->email;
+        self::$student->password    = bcrypt($request->phone_no);
+        self::$student->phone_no    = $request->phone_no;
+        self::$student->save();
+
+        return self::$student;
+    }
 }

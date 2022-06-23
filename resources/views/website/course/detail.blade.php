@@ -24,7 +24,7 @@
                         <hr>
                         <p>{{$course->short_description}}</p>
                         <hr>
-                        <a href="{{route("enroll" , ["id" => $course->id])}}" class="btn btn-outline-success px-5">Enroll Now</a>
+                        <a href="{{route("enroll" , ["id" => $course->id])}}" class="btn btn-outline-success px-5 {{$check == true ? "disabled" : ""}}">Enroll Now</a>
                     </div>
                 </div>
 

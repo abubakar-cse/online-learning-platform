@@ -18,21 +18,39 @@
                             <div class="row mb-3">
                                 <div class="col-md-3">Name</div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="name" />
+
+                                    @if(Session::get("student_id"))
+                                        <input type="text" class="form-control" name="name" value="{{$data["name"]}}" readonly />
+                                        @else
+                                        <input type="text" class="form-control" name="name" />
+                                    @endif
+
                                     <span class="text-danger">{{$errors->has('name') ? $errors->first('name') : "" }}</span>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-3">Email</div>
                                 <div class="col-md-9">
-                                    <input type="email" class="form-control" name="email" />
+
+                                    @if(Session::get("student_id"))
+                                        <input type="email" class="form-control" name="email" value="{{$data["email"]}}" readonly />
+                                    @else
+                                        <input type="email" class="form-control" name="email" />
+                                    @endif
+
                                     <span class="text-danger">{{$errors->has('email') ? $errors->first('email') : "" }}</span>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-md-3">Phone No</div>
                                 <div class="col-md-9">
-                                    <input type="number" class="form-control" name="phone_no" />
+
+                                    @if(Session::get("student_id"))
+                                        <input type="number" class="form-control" name="phone_no" value="{{$data["phone_no"]}}" readonly />
+                                    @else
+                                        <input type="number" class="form-control" name="phone_no" />
+                                    @endif
+
                                     <span class="text-danger">{{$errors->has('phone_no') ? $errors->first('phone_no') : "" }}</span>
                                 </div>
                             </div>

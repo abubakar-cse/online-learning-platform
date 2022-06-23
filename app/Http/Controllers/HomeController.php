@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Enroll;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Session;
 
 class HomeController extends Controller
 {
     private $courses;
     private $course;
     private $teachers;
+    private $enroll;
+    private $check = false;
 
 
     public function index()
@@ -35,8 +39,18 @@ class HomeController extends Controller
 
     public function detail($id)
     {
+        if (Session::get("student_id"))
+        {
+            $this->enroll = Enroll::where("student_id", Session::get("student_id"))->where("course_id", $id)->first();
+
+            if ($this->enroll)
+            {
+                $this->check =true;
+            }
+        }
+
         $this->course = Course::find($id);
-        return view("website.course.detail", ["course" => $this->course]);
+        return view("website.course.detail", ["course" => $this->course , "check" => $this->check]);
     }
 
     public function contact()

@@ -22,4 +22,22 @@ class Enroll extends Model
 
         return self::$enroll;
     }
+
+    public function course()
+    {
+        return $this->belongsTo("App\Models\Course");
+    }
+
+    public function student()
+    {
+        return $this->belongsTo("App\Models\Student");
+    }
+
+    public static function updateEnrollStatus($id)
+    {
+        self::$enroll = Enroll::find($id);
+        self::$enroll->enroll_status = "Complete";
+        self::$enroll->payment_amount = self::$enroll->course->fee;
+        self::$enroll->save();
+    }
 }

@@ -12,6 +12,9 @@ use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\StudentCourseController;
 use App\Http\Controllers\StudentAuthController;
+use App\Http\Controllers\StudentDashboardController;
+use App\Http\Controllers\AdminStudentController;
+use App\Http\Controllers\AdminEnrollController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +38,23 @@ Route::get('/enroll/{id}', [EnrollController::class, "index"])->name("enroll");
 Route::post('/confirm-enroll/{id}', [EnrollController::class, "createEnroll"])->name("enroll.confirm");
 
 Route::get('/course-registration-detail/{id}', [StudentCourseController::class, "detail"])->name("registration.detail");
+
+Route::post('/student-login', [StudentAuthController::class, "login"])->name("student.login");
+Route::post('/student-register', [StudentAuthController::class, "register"])->name("student.register");
 Route::get('/student-logout', [StudentAuthController::class, "logout"])->name("student.logout");
+
+
+//Student Dashboard Section
+Route::get('/student-dashboard', [StudentDashboardController::class, "index"])->name("student.dashboard");
+Route::get('/student-course', [StudentDashboardController::class, "course"])->name("student.course");
+
 
 //Teacher Dashboard Section
 Route::get("/teacher-login", [TeacherAuthController::class, "login"])->name("teacher.login");
 Route::post("/teacher-login-check", [TeacherAuthController::class, "loginCheck"])->name("teacher.login-check");
 Route::post("/teacher-logout", [TeacherAuthController::class, "logout"])->name("teacher.logout");
 Route::get("/teacher-dashboard", [TeacherDashboardController::class, "index"])->name("teacher.dashboard")->middleware("teacher");
+
 
 //Course Section (From Teacher Profile)
 Route::get("/add-course", [CourseController::class, "add"])->name("course.add")->middleware("teacher");
@@ -74,4 +87,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::get('/admin-manage-course', [AdminCourseController::class, "manage"])->name('admin.manage-course');
     Route::get('/admin-course-detail/{id}', [AdminCourseController::class, "detail"])->name('admin.course-detail');
     Route::get('/admin-course-status/{id}', [AdminCourseController::class, "status"])->name('admin.course-status');
+
+    Route::get('/admin-manage-student', [AdminStudentController::class, "manageStudent"])->name('admin.manage-student');
+    Route::get('/admin-student-update-status/{id}', [AdminStudentController::class, "updateStatus"])->name('admin.student-update-status');
+
+    Route::get('/admin-manage-student-enroll', [AdminEnrollController::class, "manageEnroll"])->name('admin.student-enroll');
+    Route::get('/admin-enroll-update-status/{id}', [AdminEnrollController::class, "updateStatus"])->name('admin.enroll-update-status');
 });

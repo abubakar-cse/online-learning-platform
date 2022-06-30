@@ -13,7 +13,15 @@
                     <div class="card card-body h-100">
                         <h3>Login Form</h3>
                         <hr/>
-                        <form action="" method="POST">
+                        @if($message = Session::get("message"))
+                            <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+                                {{$message}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        <form action="{{route("student.login")}}" method="POST">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-md-3">Email</div>
@@ -40,12 +48,18 @@
                     <div class="card card-body h-100">
                         <h3>Registration Form</h3>
                         <hr/>
-                        <form action="" method="POST">
+                        <form action="{{route("student.register")}}" method="POST">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-md-3">Name</div>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="name" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3">Phone No</div>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" name="phone_no" />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -60,8 +74,6 @@
                                     <input type="password" class="form-control" name="password" />
                                 </div>
                             </div>
-
-
                             <div class="row mb-3">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-9">

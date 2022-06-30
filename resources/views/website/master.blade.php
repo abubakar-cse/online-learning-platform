@@ -23,7 +23,7 @@
                 <li class="dropdown">
                     <a href="" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{Session::get("student_name")}}</a>
                     <ul class="dropdown-menu">
-                        <li><a href="" class="dropdown-item">Dashboard</a></li>
+                        <li><a href="{{route("student.dashboard")}}" class="dropdown-item">Dashboard</a></li>
                         <li><a href="{{route("student.logout")}}" class="dropdown-item">Logout</a></li>
                     </ul>
                 </li>

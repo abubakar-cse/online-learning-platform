@@ -132,7 +132,7 @@
                             <span>Student Module</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="crypto-wallet.html">Manage Student</a></li>
+                            <li><a href="{{route("admin.manage-student")}}">Manage Student</a></li>
                         </ul>
                     </li>
 
@@ -152,7 +152,7 @@
                             <span>Enroll Module</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="invoices-list.html">Manage Enroll</a></li>
+                            <li><a href="{{route("admin.student-enroll")}}">Manage Enroll</a></li>
                         </ul>
                     </li>
 

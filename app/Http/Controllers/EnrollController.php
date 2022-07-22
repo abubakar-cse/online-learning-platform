@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EnrollConfirmationMail;
 use App\Models\Course;
 use App\Models\Enroll;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Session;
 
 class EnrollController extends Controller
@@ -53,6 +55,13 @@ class EnrollController extends Controller
         }
 
         $this->enroll   = Enroll::newEnroll($request, $this->student->id, $id);
+
+        Mail::to($this->student->email)->send(new EnrollConfirmationMail([
+            "name" => $this->student->name,
+            "email" => $this->student->email,
+            "pssword" => $this->student->phone_no,
+        ]));
+
         return redirect("/course-registration-detail/" . $this->enroll->id);
     }
 }

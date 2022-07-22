@@ -29,7 +29,6 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone No</th>
-{{--                            <th>Address</th>--}}
                             <th>Image</th>
                             <th>Action</th>
                         </tr>
@@ -42,7 +41,6 @@
                             <td>{{$teacher->name}}</td>
                             <td>{{$teacher->email}}</td>
                             <td>{{$teacher->phone_no}}</td>
-{{--                            <td>{{$teacher->address}}</td>--}}
                             <td class="text-center">
                                 <img src="{{asset($teacher->image)}}" alt="" height="60" width="90">
                             </td>

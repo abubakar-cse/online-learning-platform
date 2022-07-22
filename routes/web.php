@@ -11,10 +11,9 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\StudentCourseController;
-use App\Http\Controllers\StudentAuthController;
-use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminEnrollController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +25,8 @@ use App\Http\Controllers\AdminEnrollController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::resource("test", TestController::class);
 
 //Website Route Section
 Route::get('/', [HomeController::class, "index"])->name("home");
@@ -39,31 +40,32 @@ Route::post('/confirm-enroll/{id}', [EnrollController::class, "createEnroll"])->
 
 Route::get('/course-registration-detail/{id}', [StudentCourseController::class, "detail"])->name("registration.detail");
 
+//Student Login-Registration Section
 Route::post('/student-login', [StudentAuthController::class, "login"])->name("student.login");
 Route::post('/student-register', [StudentAuthController::class, "register"])->name("student.register");
 Route::get('/student-logout', [StudentAuthController::class, "logout"])->name("student.logout");
-
 
 //Student Dashboard Section
 Route::get('/student-dashboard', [StudentDashboardController::class, "index"])->name("student.dashboard");
 Route::get('/student-course', [StudentDashboardController::class, "course"])->name("student.course");
 
-
 //Teacher Dashboard Section
-Route::get("/teacher-login", [TeacherAuthController::class, "login"])->name("teacher.login");
+Route::get("/teacher-login", [TeacherAuthController::class, "login"])->name("teacher.login")->middleware("teacher.auth");
 Route::post("/teacher-login-check", [TeacherAuthController::class, "loginCheck"])->name("teacher.login-check");
 Route::post("/teacher-logout", [TeacherAuthController::class, "logout"])->name("teacher.logout");
-Route::get("/teacher-dashboard", [TeacherDashboardController::class, "index"])->name("teacher.dashboard")->middleware("teacher");
 
 
-//Course Section (From Teacher Profile)
-Route::get("/add-course", [CourseController::class, "add"])->name("course.add")->middleware("teacher");
-Route::post("/new-course", [CourseController::class, "create"])->name("course.new")->middleware("teacher");
-Route::get("/manage-course", [CourseController::class, "manage"])->name("course.manage")->middleware("teacher");
-Route::get("/edit-course/{id}", [CourseController::class, "edit"])->name("course.edit")->middleware("teacher");
-Route::post("/update-course/{id}", [CourseController::class, "update"])->name("course.update")->middleware("teacher");
-Route::get("/delete-course/{id}", [CourseController::class, "delete"])->name("course.delete")->middleware("teacher");
-Route::get("/detail-course/{id}", [CourseController::class, "detail"])->name("course.detail")->middleware("teacher");
+Route::middleware("teacher")->group(function (){
+    Route::get("/teacher-dashboard", [TeacherDashboardController::class, "index"])->name("teacher.dashboard");
+    //Course Section (From Teacher Profile)
+    Route::get("/add-course", [CourseController::class, "add"])->name("course.add");
+    Route::post("/new-course", [CourseController::class, "create"])->name("course.new");
+    Route::get("/manage-course", [CourseController::class, "manage"])->name("course.manage");
+    Route::get("/edit-course/{id}", [CourseController::class, "edit"])->name("course.edit");
+    Route::post("/update-course/{id}", [CourseController::class, "update"])->name("course.update");
+    Route::get("/delete-course/{id}", [CourseController::class, "delete"])->name("course.delete");
+    Route::get("/detail-course/{id}", [CourseController::class, "detail"])->name("course.detail");
+});
 
 
 //Admin Routes Section
